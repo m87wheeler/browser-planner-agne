@@ -37,6 +37,11 @@
         font-size: 0.9rem;
         background: #ccc;
 
+        &:hover {
+            background: #566573;
+            color: #fff;
+        }
+
         &__label {
             padding: 0.25rem;
             display: grid;
@@ -61,14 +66,21 @@
         &__button {
             width: 1.5rem;
             height: 1.5rem;
-            background: crimson;
             color: #fff;
+            background: transparent;
             border: none;
             line-height: 1.5rem;
             cursor: pointer;
 
             &:hover {
                 opacity: 0.8;
+                background: #fff;
+            }
+
+            img {
+                width: 1.5rem;
+                height: 1.5rem;
+                padding: 0.25rem;
             }
         }
     }
@@ -84,6 +96,8 @@
             value={_id}
             checked={complete}
             on:change={toggleComplete} />
-        <button class="task__button" on:click={handleDelete}>X</button>
+        <button class="task__button" on:click={handleDelete}>
+            <img src="./images/cancel.png" alt="Delete Task" />
+        </button>
     </label>
 </li>

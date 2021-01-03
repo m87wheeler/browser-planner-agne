@@ -1,7 +1,7 @@
 <script>
     import { getMonday } from "../../utils/functions";
     import Day from "../Day.svelte";
-    import Header from "../Header.svelte";
+    import Title from "../Title.svelte";
 
     export let style = "";
 </script>
@@ -18,7 +18,7 @@
 </style>
 
 <div class="planner" {style}>
-    <Header style="grid-column: 1 / span 7;">Day Planner</Header>
+    <Title style="grid-column: 1 / span 7;">Day Planner</Title>
     <Day day="Monday" date={getMonday(0)} type="todo" />
     <Day day="Tuesday" date={getMonday(1)} type="todo" />
     <Day day="Wednesday" date={getMonday(2)} type="todo" />
