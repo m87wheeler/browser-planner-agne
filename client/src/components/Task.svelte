@@ -7,7 +7,7 @@
 
     // toggle task completion
     const toggleComplete = async (e) => {
-        const req = await fetch(`http://localhost:3000/update/${_id}`, {
+        const req = await fetch(`http://localhost:3000/api/update/${_id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -22,7 +22,7 @@
 
     // delete task
     const handleDelete = async () => {
-        const req = await fetch(`http://localhost:3000/delete/${_id}`, {
+        const req = await fetch(`http://localhost:3000/api/delete/${_id}`, {
             method: "DELETE",
         });
         const res = await req.json();

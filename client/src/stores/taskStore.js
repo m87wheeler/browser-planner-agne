@@ -24,7 +24,7 @@ const TaskStore = () => {
     populate: (tasks) =>
       update((state) => ({
         ...state,
-        tasks: [...state.tasks, ...tasks],
+        tasks,
       })),
     addTask: (id) => {
       update((state) => {
@@ -65,19 +65,35 @@ const TaskStore = () => {
       });
     },
     // ? input related
-    toggleInput: (date, type, bool = undefined) => {
-      bool !== undefined
-        ? update((state) => ({
-            ...state,
-            enableInput: bool,
-            taskModel: { ...state.taskModel, date, type },
-          }))
-        : update((state) => ({
-            ...state,
-            enableInput: !state.enableInput,
-            taskModel: { ...state.taskModel, date, type },
-          }));
-    },
+    // toggleInput: (date, type, bool = undefined) => {
+    //   bool !== undefined
+    //     ? update((state) => ({
+    //         ...state,
+    //         enableInput: bool,
+    //         taskModel: { ...state.taskModel, date, type },
+    //       }))
+    //     : update((state) => ({
+    //         ...state,
+    //         enableInput: !state.enableInput,
+    //         taskModel: { ...state.taskModel, date, type },
+    //       }));
+    // },
+    enableInput: (date, type) =>
+      update((state) => ({
+        ...state,
+        enableInput: true,
+        taskModel: { ...state.taskModel, date, type },
+      })),
+    disableInput: () =>
+      update((state) => ({
+        ...state,
+        enableInput: false,
+        taskModel: {
+          task: "",
+          type: "",
+          date: "",
+        },
+      })),
     taskInput: (str) =>
       update((state) => ({
         ...state,

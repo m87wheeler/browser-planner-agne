@@ -1,6 +1,7 @@
 <script>
     import { onDestroy } from "svelte";
     import { clockTime, timeOfDay } from "../../utils/functions";
+    import { taskStore } from "../../stores/taskStore";
 
     $: time = new Date().getTime();
     const timer = setInterval(() => {
@@ -8,6 +9,9 @@
     }, 1000);
 
     onDestroy(() => clearInterval(timer));
+
+    $: totalTasks = $taskStore.tasks;
+    $: completedTasks = totalTasks.filter((task) => task.complete);
 </script>
 
 <style type="text/scss">
@@ -42,8 +46,21 @@
 
 <div class="dashboard">
     <div>
-        <p class="dashboard__tasks">n tasks this week</p>
-        <p class="dashboard__completed">n completed tasks this week</p>
+        <p class="dashboard__tasks">
+            {totalTasks.length}
+            task{totalTasks.length !== 1 ? 's' : ''}
+            this week
+        </p>
+        <p class="dashboard__completed">
+            {completedTasks.length}
+            completed task{completedTasks.length !== 1 ? 's' : ''}
+            this week
+        </p>
+        <p class="dashboard__completed">
+            {totalTasks.length - completedTasks.length}
+            outstanding task{totalTasks.length - completedTasks.length !== 1 ? 's' : ''}
+            this week
+        </p>
     </div>
     <div>
         <p class="dashboard__greeting">{timeOfDay(time)} Agne</p>

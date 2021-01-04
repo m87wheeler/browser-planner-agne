@@ -10,8 +10,7 @@ export function ordinal(n) {
 
 // ?
 // d = date, n = day
-export function getMonday(n) {
-  const d = new Date();
+export function getMonday(n, d = new Date()) {
   const day = d.getDay(),
     diff = d.getDate() - day + (day == 0 ? -6 + n : 1 + n); // adjust when day is sunday
   return new Date(d.setDate(diff));
@@ -68,7 +67,7 @@ export function clickOutside(node) {
 // fetch all tasks from database
 export const fetchTasks = async (from, to) => {
   const query = `?from=${from}&to=${to}`;
-  const url = "http://localhost:3000";
+  const url = "http://localhost:3000/api";
   const res = await fetch(`${url}${from && to ? query : "/"}`);
   const data = await res.json();
   return data.tasks;

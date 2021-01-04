@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -41,13 +42,17 @@ server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 
 // routes
 server
-  .get("/", getTasks)
-  .get("/:id", getTask)
-  .post("/create", createTask)
-  .post("/update/:id", updateTask)
-  .delete("/delete/:id", deleteTask);
+  .get("/api", getTasks)
+  .get("/api/:id", getTask)
+  .post("/api/create", createTask)
+  .post("/api/update/:id", updateTask)
+  .delete("/api/delete/:id", deleteTask);
 
-console.log(`
-    Left off creating date filter for mongodb get request. 
-    See taskController.js and requests.rest
-  `);
+// serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // set a static folder
+  server.use(express.static("client/build"));
+  server.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}

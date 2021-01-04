@@ -30,7 +30,8 @@
 		width: 100%;
 		height: 88vh;
 		display: grid;
-		grid-template-rows: 1fr 0.5fr 0.5fr;
+		// grid-template-rows: 1fr 0.5fr 0.5fr;
+		grid-template-rows: 1.25fr 0.75fr;
 		gap: 1rem;
 		padding: 1rem;
 		background: #566573;
@@ -46,10 +47,10 @@
 	<WeekChange type="increment" />
 	<DayPlanner />
 	<SocialMediaPlanner />
-	<Tray>
+	<!-- <Tray>
 		<Highlight type="marketing" title="Marketing" />
 		<Highlight type="important" title="Don't Forget" />
 		<Highlight type="upcoming" title="Next Week" />
-	</Tray>
+	</Tray> -->
 	<WeekChange type="decrement" />
 </main>
