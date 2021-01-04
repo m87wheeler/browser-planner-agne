@@ -77,7 +77,7 @@ const getTasks = async (req, res) => {
     } else {
       tasks = await Task.find();
     }
-    if (!tasks.length)
+    if (!tasks || !tasks.length)
       return res
         .status(400)
         .json({ success: false, message: "No tasks found." });

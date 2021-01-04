@@ -24,7 +24,7 @@ const TaskStore = () => {
     populate: (tasks) =>
       update((state) => ({
         ...state,
-        tasks: [...state.tasks, ...tasks],
+        tasks,
       })),
     addTask: (id) => {
       update((state) => {

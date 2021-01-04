@@ -83,7 +83,8 @@
             value={$taskStore.taskModel.task}
             placeholder="Task text..."
             on:input={handleInput}
-            disabled={!$taskStore.enableInput} />
+            disabled={!$taskStore.enableInput}
+            style="border: 1px solid #566573;" />
         <button
             class="new-task__submit"
             on:click={handleSubmit}

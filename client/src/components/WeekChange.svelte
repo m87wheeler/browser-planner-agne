@@ -6,7 +6,9 @@
 
     const populateTasks = async (from, to) => {
         const data = await fetchTasks(from, to);
-        data.length ? taskStore.populate(data) : console.log("No tasks");
+        data && data.length
+            ? taskStore.populate(data)
+            : console.log("No tasks");
     };
 
     const handleClick = () => {

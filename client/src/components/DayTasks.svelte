@@ -7,8 +7,8 @@
         highlight = false;
 
     // get start and end times of date
-    const start = new Date(date).setHours(0, 0, 0, 0);
-    const end = new Date(date).setHours(23, 59, 59, 999);
+    $: start = new Date(date).setHours(0, 0, 0, 0);
+    $: end = new Date(date).setHours(23, 59, 59, 999);
 
     const openInput = () => taskStore.toggleInput(date, type, true);
 </script>
