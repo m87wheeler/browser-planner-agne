@@ -1,32 +1,34 @@
 <script>
 	import { onMount } from "svelte";
 	import { taskStore } from "./stores/taskStore";
+	import { fetchTasks } from "./utils/functions";
+
 	import DayPlanner from "./components/views/DayPlanner.svelte";
 	import SocialMediaPlanner from "./components/views/SocialMediaPlanner.svelte";
-	// import NewTask from "./components/views/NewTask.svelte";
+	import NewTask from "./components/views/NewTask.svelte";
 	import Tray from "./components/Tray.svelte";
 	import Highlight from "./components/views/Highlight.svelte";
+	import Dashboard from "./components/views/Dashboard.svelte";
+	import Header from "./components/views/Header.svelte";
+	import LogoSocial from "./components/views/LogoSocial.svelte";
+	import WeekChange from "./components/WeekChange.svelte";
 
-	// fetch all tasks from database
-	const fetchTasks = async () => {
-		const res = await fetch("http://localhost:3000/");
-		const data = await res.json();
-		return data;
+	// populate tasks
+	const populateTasks = async (from, to) => {
+		const data = await fetchTasks(from, to);
+		data.length ? taskStore.populate(data) : console.log("No tasks");
 	};
+	onMount(async () =>
+		populateTasks($taskStore.date.start, $taskStore.date.end)
+	);
 
-	// fetch on load
-	onMount(async () => {
-		const { tasks } = await fetchTasks();
-		tasks && tasks.length
-			? taskStore.populate(tasks)
-			: console.log("No tasks");
-	});
+	$: console.log($taskStore);
 </script>
 
 <style type="text/scss">
 	main {
 		width: 100%;
-		height: 100%;
+		height: 88vh;
 		display: grid;
 		grid-template-rows: 1fr 0.5fr 0.5fr;
 		gap: 1rem;
@@ -35,12 +37,19 @@
 	}
 </style>
 
+<Header>
+	<LogoSocial />
+	<NewTask />
+	<Dashboard />
+</Header>
 <main>
+	<WeekChange type="increment" />
 	<DayPlanner />
 	<SocialMediaPlanner />
 	<Tray>
-		<Highlight type="marketing" header="Marketing" />
-		<Highlight type="important" header="Don't Forget" />
-		<Highlight type="upcoming" header="Next Week" />
+		<Highlight type="marketing" title="Marketing" />
+		<Highlight type="important" title="Don't Forget" />
+		<Highlight type="upcoming" title="Next Week" />
 	</Tray>
+	<WeekChange type="decrement" />
 </main>

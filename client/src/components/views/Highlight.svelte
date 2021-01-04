@@ -1,9 +1,9 @@
 <script>
     import DayTasks from "../DayTasks.svelte";
-    import Header from "../Header.svelte";
+    import Title from "../Title.svelte";
 
     export let type = "",
-        header;
+        title;
 </script>
 
 <style type="text/scss">
@@ -15,6 +15,6 @@
 </style>
 
 <div class="highlight">
-    <Header>{header}</Header>
+    <Title>{title}</Title>
     <DayTasks date={new Date()} {type} highlight />
 </div>

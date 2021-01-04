@@ -8,6 +8,9 @@
 </script>
 
 <style type="text/scss">
+    .day {
+        overflow: hidden;
+    }
 </style>
 
 <div class="day">

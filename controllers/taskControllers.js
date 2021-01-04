@@ -64,8 +64,19 @@ const deleteTask = async (req, res) => {
 // route:   api/
 // desc:    *
 const getTasks = async (req, res) => {
+  const { from, to } = req.query;
   try {
-    const tasks = await Task.find();
+    let tasks;
+    if (from && to) {
+      tasks = await Task.find({
+        date: {
+          $gte: new Date(parseInt(from)),
+          $lt: new Date(parseInt(to)),
+        },
+      });
+    } else {
+      tasks = await Task.find();
+    }
     if (!tasks.length)
       return res
         .status(400)
@@ -93,4 +104,19 @@ const getTask = async (req, res) => {
   }
 };
 
-module.exports = { createTask, updateTask, deleteTask, getTasks, getTask };
+// method:  GET
+// route:   api/?from=''&to=''
+// desc:    *
+const getTaskByDateRange = async (req, res) => {
+  const { from, to } = req.query;
+  console.log(from, to);
+};
+
+module.exports = {
+  createTask,
+  updateTask,
+  deleteTask,
+  getTasks,
+  getTask,
+  getTaskByDateRange,
+};

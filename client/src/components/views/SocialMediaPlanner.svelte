@@ -1,7 +1,7 @@
 <script>
     import { getMonday } from "../../utils/functions";
     import Day from "../Day.svelte";
-    import Header from "../Header.svelte";
+    import Title from "../Title.svelte";
 
     export let style = "";
 </script>
@@ -18,7 +18,7 @@
 </style>
 
 <div class="planner" {style}>
-    <Header style="grid-column: 1 / span 7;">Social Media Planner</Header>
+    <Title style="grid-column: 1 / span 7;">Social Media Planner</Title>
     <Day date={getMonday(0)} type="social" />
     <Day date={getMonday(1)} type="social" />
     <Day date={getMonday(2)} type="social" />
