@@ -1,6 +1,11 @@
 import { writable } from "svelte/store";
+import { getMonday } from "../utils/functions";
 
 const initialState = {
+  date: {
+    start: getMonday(0).getTime(),
+    end: getMonday(6).getTime(),
+  },
   tasks: [],
   enableInput: false,
   taskModel: {
@@ -79,6 +84,23 @@ const TaskStore = () => {
         taskModel: {
           ...state.taskModel,
           task: str,
+        },
+      })),
+    // ? other
+    incrementWeek: () =>
+      update((state) => ({
+        ...state,
+        date: {
+          start: state.date.start + 1000 * 60 * 60 * 24 * 7,
+          end: state.date.end + 1000 * 60 * 60 * 24 * 7,
+        },
+      })),
+    decrementWeek: () =>
+      update((state) => ({
+        ...state,
+        date: {
+          start: state.date.start - 1000 * 60 * 60 * 24 * 7,
+          end: state.date.end - 1000 * 60 * 60 * 24 * 7,
         },
       })),
   };

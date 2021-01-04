@@ -3,6 +3,7 @@
 
 <style type="text/scss">
     .header {
+        height: 12vh;
         display: grid;
         grid-template-columns: 0.5fr 1fr 0.5fr;
         column-gap: 1rem;

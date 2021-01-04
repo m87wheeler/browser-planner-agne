@@ -46,3 +46,8 @@ server
   .post("/create", createTask)
   .post("/update/:id", updateTask)
   .delete("/delete/:id", deleteTask);
+
+console.log(`
+    Left off creating date filter for mongodb get request. 
+    See taskController.js and requests.rest
+  `);

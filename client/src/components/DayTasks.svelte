@@ -16,7 +16,8 @@
 <style type="text/scss">
     .list {
         display: grid;
-        grid-template-rows: 2rem 2rem auto;
+        grid-template-rows: auto;
+        grid-auto-rows: auto;
         row-gap: 0.5rem;
         justify-items: center;
         padding: 0.5rem 0;

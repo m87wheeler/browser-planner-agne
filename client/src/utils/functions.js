@@ -63,3 +63,13 @@ export function clickOutside(node) {
     },
   };
 }
+
+// ? fetch tasks
+// fetch all tasks from database
+export const fetchTasks = async (from, to) => {
+  const query = `?from=${from}&to=${to}`;
+  const url = "http://localhost:3000";
+  const res = await fetch(`${url}${from && to ? query : "/"}`);
+  const data = await res.json();
+  return data.tasks;
+};
