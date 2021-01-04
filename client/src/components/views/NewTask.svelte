@@ -3,7 +3,7 @@
 
     // function to add task to database
     const updateDatabase = async (task) => {
-        const req = await fetch("http://localhost:3000/create", {
+        const req = await fetch("http://localhost:3000/api/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,6 +25,7 @@
         console.log(success, message, _id);
         if (success) {
             taskStore.addTask(_id);
+            taskStore.disableInput();
         } else {
             alert(message);
         }

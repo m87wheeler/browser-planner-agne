@@ -10,7 +10,7 @@
     $: start = new Date(date).setHours(0, 0, 0, 0);
     $: end = new Date(date).setHours(23, 59, 59, 999);
 
-    const openInput = () => taskStore.toggleInput(date, type, true);
+    const openInput = () => taskStore.enableInput(date, type, true);
 </script>
 
 <style type="text/scss">

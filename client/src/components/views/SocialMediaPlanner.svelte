@@ -1,5 +1,7 @@
 <script>
+    import { taskStore } from "../../stores/taskStore";
     import { getMonday } from "../../utils/functions";
+
     import Day from "../Day.svelte";
     import Title from "../Title.svelte";
 
@@ -19,11 +21,11 @@
 
 <div class="planner" {style}>
     <Title style="grid-column: 1 / span 7;">Social Media Planner</Title>
-    <Day date={getMonday(0)} type="social" />
-    <Day date={getMonday(1)} type="social" />
-    <Day date={getMonday(2)} type="social" />
-    <Day date={getMonday(3)} type="social" />
-    <Day date={getMonday(4)} type="social" />
-    <Day date={getMonday(5)} type="social" />
-    <Day date={getMonday(6)} type="social" />
+    <Day date={getMonday(0, new Date($taskStore.date.start))} type="social" />
+    <Day date={getMonday(1, new Date($taskStore.date.start))} type="social" />
+    <Day date={getMonday(2, new Date($taskStore.date.start))} type="social" />
+    <Day date={getMonday(3, new Date($taskStore.date.start))} type="social" />
+    <Day date={getMonday(4, new Date($taskStore.date.start))} type="social" />
+    <Day date={getMonday(5, new Date($taskStore.date.start))} type="social" />
+    <Day date={getMonday(6, new Date($taskStore.date.start))} type="social" />
 </div>

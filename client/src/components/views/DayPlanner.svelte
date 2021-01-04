@@ -1,7 +1,7 @@
 <script>
     import { taskStore } from "../../stores/taskStore";
-
     import { getMonday } from "../../utils/functions";
+
     import Day from "../Day.svelte";
     import Title from "../Title.svelte";
 
